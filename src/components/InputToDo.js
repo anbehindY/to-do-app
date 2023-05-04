@@ -1,33 +1,38 @@
-import { useState } from "react";
+import PropTypes from 'prop-types';
+import { useState } from 'react';
 
-const InputTodo = ({addTask}) => {
-    const [title, setTitle] = useState('');
-    const [warning, setWarning] = useState('');
+const InputTodo = ({ addTask }) => {
+  const [title, setTitle] = useState('');
+  const [warning, setWarning] = useState('');
 
-    const titleSetter = (e) => {
-        setTitle(e.target.value);
+  const titleSetter = (e) => {
+    setTitle(e.target.value);
+  };
+
+  const submitTitle = (e) => {
+    e.preventDefault();
+    if (title.trim()) {
+      addTask(title);
+      setTitle('');
+      setWarning('');
+    } else {
+      setWarning('Please add item!');
     }
+  };
 
-    const submitTitle = (e) => {
-        e.preventDefault();
-        if(title.trim()){
-            addTask(title);
-            setTitle('');
-            setWarning('');
-        } else {
-            setWarning('Please add item!')
-        }    
-    }
-
-    return (
+  return (
     <>
       <form onSubmit={submitTitle} className="form-container">
-        <input type="text" placeholder="Add Todo..." value={title} onChange={titleSetter} className="input-text"/>
-        <button className="input-submit">Submit</button>
+        <input type="text" placeholder="Add Todo..." value={title} onChange={titleSetter} className="input-text" />
+        <button type="button" className="input-submit">Submit</button>
       </form>
       <small className="input-warning">{warning}</small>
     </>
-    );
-  };
-  export default InputTodo;
-  
+  );
+};
+
+InputTodo.propTypes = {
+  addTask: PropTypes.func.isRequired,
+};
+
+export default InputTodo;
