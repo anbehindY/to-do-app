@@ -1,18 +1,10 @@
-import Header from './components/Header';
-import ToDoLogic from './components/ToDoLogic';
+import { AddTodo } from "./components/AddTodo";
 
 function App() {
   return (
-    <div className="wrapper">
-      <div className="todos">
-        <Header style={{
-          padding: '20px 0',
-          lineHeight: '1.5em',
-          color: '#aeadad',
-          textAlign: 'center',
-        }}
-        />
-        <ToDoLogic />
+    <div className="flex flex-col min-h-screen p-4 items-center">
+      <div className="text-blue-600 text-3xl font-bold">
+        <AddTodo />
       </div>
     </div>
   );
